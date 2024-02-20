@@ -15,18 +15,25 @@ function verificarChute() {
     if (chute == numeroSecreto) {
         exibirTextoNaTela('h1', 'Acertou!');
         exibirTextoNaTela('p', `Você descobriu o número secreto com ${tentativas} ${tentativas > 1 ? 'tentativas' : 'tentativa'}!`);
+
+        document.getElementById('reiniciar').removeAttribute('disabled');
     } else {
         if ( chute > numeroSecreto) {
             exibirTextoNaTela('p', 'O número secreto é menor.');
         } else {
             exibirTextoNaTela('p', 'O número secreto é maior.');
         }
-        
-        tentativas++;
-    }
 
+        tentativas++;
+        limparCampo();
+    }
 }
 
 function gerarNumeroAleatorio() {
     return parseInt(Math.random() * 10 + 1);
+}
+
+function limparCampo() {
+    chute = document.querySelector('input');
+    chute.value = '';
 }
